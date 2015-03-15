@@ -13,16 +13,23 @@ public class Main {
         Schema schema = new Schema(1, "com.engine.dzapp.dao");
         addEntity(schema);
 
-//        new DaoGenerator().generateAll(schema, "D:\\github\\greenDAO\\DaoExample\\src-gen");
-//        new DaoGenerator().generateAll(schema, "..\\mnsfz\\src\\main\\java");
-        new DaoGenerator().generateAll(schema, "../Dzapp/app/src/main/java");
+        new DaoGenerator().generateAll(schema, "../dzapp/app/src/main/java");
     }
 
     private static void addEntity(Schema schema) {
         Entity entity = schema.addEntity("UserTable");
         entity.addStringProperty("userName").primaryKey();
         entity.addStringProperty("password") ;
-        entity.addLongProperty("time") ;
+        entity.addStringProperty("gespassword") ;
+        entity.addDateProperty("loginTime") ;
+
+        Entity event= schema.addEntity("Event");
+        event.addIdProperty().autoincrement().primaryKey();
+        event.addStringProperty("eventName");
+        event.addIntProperty("eventType");
+        event.addIntProperty("status");
+        event.addDateProperty("time");
+        event.addStringProperty("notes");
 
     }
 
